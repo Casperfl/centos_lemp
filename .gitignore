@@ -1,0 +1,13 @@
+/.idea/*
+# archives
+*.zip
+*.rar
+# doc
+*.doc
+*.docx
+*.csv
+*.txt
+# tmp
+*.log
+*.bak
+# custom

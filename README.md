@@ -1,10 +1,8 @@
 # Quick LEMP Installation
-=====
 
 [<img src="https://img.shields.io/badge/version-1.0-blue">](https://img.shields.io/badge/version-1.0-blue)
 [<img src="https://img.shields.io/badge/License-MIT-yellow">](https://img.shields.io/badge/License-MIT-yellow)
 
-=====
 
 > Quick Installation LEMP on VBox or server using CentOS 7
 

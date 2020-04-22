@@ -81,14 +81,16 @@ gpgcheck=1' > /etc/yum.repos.d/mariadb.repo
 
 function nginx_conf(){
     if [ -d /etc/nginx/conf.d ] ; then
-        mv -fn /etc/nginx/conf.d /etc/nginx/conf.d_old
+        rm -fr /etc/nginx/conf.d_old
+        mv -f /etc/nginx/conf.d /etc/nginx/conf.d_old
     fi
     if [ -f /etc/nginx/nginx.conf ] ; then
+        rm -f /etc/nginx/nginx.conf_old
         mv -f /etc/nginx/nginx.conf /etc/nginx/nginx.conf_old
     fi
 
-    rm -fr /etc/nginx/conf.d
-    rm -f /etc/nginx/nginx.conf
+#    rm -fr /etc/nginx/conf.d
+#    rm -f /etc/nginx/nginx.conf
 
     #copy current conf
     cp -fr $DIRSCRIPT/lemp/nginx/conf.d /etc/nginx
@@ -119,11 +121,12 @@ function nginx_conf_local(){
 
     if [ "$NGINX_CONF_COPY" = 'COPY' ];
     then
-        #copy conf
+        #copy conf to host
         cp -f /etc/nginx/conf.d/default.conf /lemp/nginx/conf.d/default.conf
         cp -f /etc/nginx/nginx.conf /lemp/nginx/nginx.conf
     fi
 
+    #copy conf to host
     if [ -f /lemp/nginx/conf.d/default.conf ] ; then
         echo '/lemp/nginx/conf.d/default.conf found ...'
     else
@@ -131,6 +134,7 @@ function nginx_conf_local(){
         cp -f /etc/nginx/conf.d/default.conf /lemp/nginx/conf.d/default.conf
     fi
 
+    #copy conf to host
     if [ -f /lemp/nginx/nginx.conf ] ; then
         echo '/lemp/nginx/nginx.conf found ...'
     else
@@ -138,25 +142,35 @@ function nginx_conf_local(){
         cp -f /etc/nginx/nginx.conf /lemp/nginx/nginx.conf
     fi
 
-    #add default conf
-    ln -sf /lemp/nginx/conf.d /etc/nginx/conf.d
-    ln -sf /lemp/nginx/nginx.conf /etc/nginx/nginx.conf
     # fix start on VBox
     fix_vbox_startnginx
-}
 
+    if [ "$NGINX_CONF_COPY" = 'LINK' ];
+    then
 
-#for local used in VBox
-function make_vbox()
-{
-    #add default conf
-    mv /var/www /var/old_www
-    mv /etc/nginx/conf.d /etc/nginx/old_conf.d
-    ln -s /lemp/nginx/conf.d /etc/nginx
-    ln -s /lemp/domains /var/www
+        rm -fr /var/www_old
+        rm -fr /etc/nginx/conf.d_old
+        rm -f /etc/nginx/nginx.conf_old
+
+        #add default conf
+        mv -f /var/www /var/www_old
+        mv -f /etc/nginx/conf.d /etc/nginx/conf.d_old
+        mv -f /etc/nginx/nginx.conf /etc/nginx/nginx.conf_old
+
+        rm -fr /var/www
+        rm -fr /etc/nginx/conf.d
+        rm -f /etc/nginx/nginx.conf
+
+        #add default conf
+        ln -s /lemp/nginx/conf.d /etc/nginx
+        ln -s /lemp/domains /var/www
+        ln -sf /lemp/nginx/nginx.conf /etc/nginx/nginx.conf
+
+    fi
 
     systemctl restart nginx
 }
+
 
 # fix start on VBox
 function fix_vbox_startnginx()

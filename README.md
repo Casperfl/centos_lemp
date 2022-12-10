@@ -26,7 +26,7 @@ Using LEMP as a minimum template for server sharing.
 ### Remote or Local without share resources
 Clone repo and run
 ```sh
-$ git clone https://github.com/spacecoding42/centos_lemp.git centos_lemp && cd centos_lemp && bash centos7_lemp.sh
+$ git clone https://github.com/SCaeR42/centos_lemp.git centos_lemp && cd centos_lemp && bash centos7_lemp.sh
 ```
 On next step choose `second` option
 ```sh
@@ -110,7 +110,7 @@ or
 👤 **CaSPeR@SpaceCoding**
 
 * Website: [spacecoding.net](https://spacecoding.net/)
-* Github: [@Casperfl](https://github.com/Casperfl)
+* Github: [@Casperfl](https://github.com/SCaeR42)
 
 ## Show your support
 

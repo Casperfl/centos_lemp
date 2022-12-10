@@ -120,4 +120,4 @@ Give a ⭐️ if this project helped you!
 
 Copyright (C) 2013 - 2020 [spacecoding.net](https://spacecoding.net/)
 
-Licensed under the [MIT](LICENSE) License.
+Licensed under the [MIT]([LICENSE](https://choosealicense.com/licenses/mit/)) License.

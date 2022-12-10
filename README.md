@@ -107,7 +107,7 @@ or
 
 ## Author
 
-👤 **CaSPeR@SpaceCoding**
+👤 **SCaeR42@SpaceCoding**
 
 * Website: [spacecoding.net](https://spacecoding.net/)
 * Github: [@Casperfl](https://github.com/SCaeR42)
